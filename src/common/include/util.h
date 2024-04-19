@@ -30,7 +30,7 @@ private:
 };
 
 #define _CONCAT(a, b) a##b 
-#define _MAKE_DEFER (line) DeferClass ——CONCAT(defer_placeholder, line) = [&]()
+#define _MAKE_DEFER(line) DeferClass _CONCAT(defer_placeholder, line) = [&]()
 
 #undef DEFER
 #define DEFER _MAKE_DEFER(__LINE__)
