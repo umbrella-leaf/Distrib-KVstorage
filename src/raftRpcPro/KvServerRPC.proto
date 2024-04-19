@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package raftKVRpcProctoc;
+
+option cc_generic_services = true;
+
+// 数据库get调用的请求参数
+message GetArgs {
+    bytes Key = 1;
+    bytes ClientId = 2;
+    int32 RequestId = 3;
+}
+
+// 数据库get调用的响应参数
+message GetReply {
+    bytes Err = 1;
+    bytes Value = 2;
+}
+
+// 数据库put/append调用的请求参数
+message PutAppendArgs {
+    bytes Key = 1;
+    bytes Value = 2;
+    bytes Op = 3; // options: "Put"/"Append"
+    bytes ClientId = 4;
+    bytes RequestId = 5;
+}
+
+// 数据库put/append调用的响应参数
+message PutAppendReply {
+    bytes Err = 1;
+}
+
+// Kv数据库的Rpc通信服务
+service KvServerRpc {
+    rpc PutAppend (PutAppendArgs) returns(PutAppendReply);
+    rpc Get (GetArgs) returns (GetReply);
+}
