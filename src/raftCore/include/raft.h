@@ -11,6 +11,8 @@
 #include "util.h"
 #include "monsoon.h"
 #include <boost/serialization/access.hpp>
+#include <boost/serialization/string.hpp>
+#include <boost/serialization/vector.hpp>
 #include <chrono>
 #include <memory>
 #include <string>
