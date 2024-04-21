@@ -37,7 +37,7 @@ private:
 
 void DPrintf(const char* format, ...);
 
-void myAssert(bool condition, std::string message = "Assertion failed!");
+void myAssert(bool condition, const std::string& message = "Assertion failed!");
 
 template<typename ...Args>
 std::string format(const char* format_str, Args... args) {
