@@ -145,7 +145,7 @@ const char descriptor_table_protodef_KvServerRPC_2eproto[] PROTOBUF_SECTION_VARI
   "\021\n\tRequestId\030\003 \001(\005\"&\n\010GetReply\022\013\n\003Err\030\001 "
   "\001(\014\022\r\n\005Value\030\002 \001(\014\"\\\n\rPutAppendArgs\022\013\n\003K"
   "ey\030\001 \001(\014\022\r\n\005Value\030\002 \001(\014\022\n\n\002Op\030\003 \001(\014\022\020\n\010C"
-  "lientId\030\004 \001(\014\022\021\n\tRequestId\030\005 \001(\014\"\035\n\016PutA"
+  "lientId\030\004 \001(\014\022\021\n\tRequestId\030\005 \001(\005\"\035\n\016PutA"
   "ppendReply\022\013\n\003Err\030\001 \001(\0142\233\001\n\013KvServerRpc\022"
   "N\n\tPutAppend\022\037.raftKVRpcProctoc.PutAppen"
   "dArgs\032 .raftKVRpcProctoc.PutAppendReply\022"
@@ -710,11 +710,7 @@ PutAppendArgs::PutAppendArgs(const PutAppendArgs& from)
     clientid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_clientid(),
       GetArena());
   }
-  requestid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_requestid().empty()) {
-    requestid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_requestid(),
-      GetArena());
-  }
+  requestid_ = from.requestid_;
   // @@protoc_insertion_point(copy_constructor:raftKVRpcProctoc.PutAppendArgs)
 }
 
@@ -724,7 +720,7 @@ void PutAppendArgs::SharedCtor() {
   value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   op_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   clientid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  requestid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  requestid_ = 0;
 }
 
 PutAppendArgs::~PutAppendArgs() {
@@ -739,7 +735,6 @@ void PutAppendArgs::SharedDtor() {
   value_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   op_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   clientid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  requestid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void PutAppendArgs::ArenaDtor(void* object) {
@@ -767,7 +762,7 @@ void PutAppendArgs::Clear() {
   value_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   op_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   clientid_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  requestid_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  requestid_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -811,11 +806,10 @@ const char* PutAppendArgs::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // bytes RequestId = 5;
+      // int32 RequestId = 5;
       case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
-          auto str = _internal_mutable_requestid();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          requestid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -871,10 +865,10 @@ failure:
         4, this->_internal_clientid(), target);
   }
 
-  // bytes RequestId = 5;
-  if (this->requestid().size() > 0) {
-    target = stream->WriteBytesMaybeAliased(
-        5, this->_internal_requestid(), target);
+  // int32 RequestId = 5;
+  if (this->requestid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(5, this->_internal_requestid(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -921,10 +915,10 @@ size_t PutAppendArgs::ByteSizeLong() const {
         this->_internal_clientid());
   }
 
-  // bytes RequestId = 5;
-  if (this->requestid().size() > 0) {
+  // int32 RequestId = 5;
+  if (this->requestid() != 0) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
         this->_internal_requestid());
   }
 
@@ -971,7 +965,7 @@ void PutAppendArgs::MergeFrom(const PutAppendArgs& from) {
   if (from.clientid().size() > 0) {
     _internal_set_clientid(from._internal_clientid());
   }
-  if (from.requestid().size() > 0) {
+  if (from.requestid() != 0) {
     _internal_set_requestid(from._internal_requestid());
   }
 }
@@ -1001,7 +995,7 @@ void PutAppendArgs::InternalSwap(PutAppendArgs* other) {
   value_.Swap(&other->value_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   op_.Swap(&other->op_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   clientid_.Swap(&other->clientid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  requestid_.Swap(&other->requestid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  swap(requestid_, other->requestid_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PutAppendArgs::GetMetadata() const {

@@ -23,7 +23,7 @@ message PutAppendArgs {
     bytes Value = 2;
     bytes Op = 3; // options: "Put"/"Append"
     bytes ClientId = 4;
-    bytes RequestId = 5;
+    int32 RequestId = 5;
 }
 
 // 数据库put/append调用的响应参数

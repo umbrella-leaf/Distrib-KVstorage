@@ -669,29 +669,13 @@ class PutAppendArgs PROTOBUF_FINAL :
   std::string* _internal_mutable_clientid();
   public:
 
-  // bytes RequestId = 5;
+  // int32 RequestId = 5;
   void clear_requestid();
-  const std::string& requestid() const;
-  void set_requestid(const std::string& value);
-  void set_requestid(std::string&& value);
-  void set_requestid(const char* value);
-  void set_requestid(const void* value, size_t size);
-  std::string* mutable_requestid();
-  std::string* release_requestid();
-  void set_allocated_requestid(std::string* requestid);
-  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
-  "    string fields are deprecated and will be removed in a"
-  "    future release.")
-  std::string* unsafe_arena_release_requestid();
-  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
-  "    string fields are deprecated and will be removed in a"
-  "    future release.")
-  void unsafe_arena_set_allocated_requestid(
-      std::string* requestid);
+  ::PROTOBUF_NAMESPACE_ID::int32 requestid() const;
+  void set_requestid(::PROTOBUF_NAMESPACE_ID::int32 value);
   private:
-  const std::string& _internal_requestid() const;
-  void _internal_set_requestid(const std::string& value);
-  std::string* _internal_mutable_requestid();
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_requestid() const;
+  void _internal_set_requestid(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
   // @@protoc_insertion_point(class_scope:raftKVRpcProctoc.PutAppendArgs)
@@ -705,7 +689,7 @@ class PutAppendArgs PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr value_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr op_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr clientid_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr requestid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 requestid_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_KvServerRPC_2eproto;
 };
@@ -1616,85 +1600,24 @@ inline void PutAppendArgs::unsafe_arena_set_allocated_clientid(
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:raftKVRpcProctoc.PutAppendArgs.ClientId)
 }
 
-// bytes RequestId = 5;
+// int32 RequestId = 5;
 inline void PutAppendArgs::clear_requestid() {
-  requestid_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  requestid_ = 0;
 }
-inline const std::string& PutAppendArgs::requestid() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 PutAppendArgs::_internal_requestid() const {
+  return requestid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PutAppendArgs::requestid() const {
   // @@protoc_insertion_point(field_get:raftKVRpcProctoc.PutAppendArgs.RequestId)
   return _internal_requestid();
 }
-inline void PutAppendArgs::set_requestid(const std::string& value) {
+inline void PutAppendArgs::_internal_set_requestid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  requestid_ = value;
+}
+inline void PutAppendArgs::set_requestid(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_requestid(value);
   // @@protoc_insertion_point(field_set:raftKVRpcProctoc.PutAppendArgs.RequestId)
-}
-inline std::string* PutAppendArgs::mutable_requestid() {
-  // @@protoc_insertion_point(field_mutable:raftKVRpcProctoc.PutAppendArgs.RequestId)
-  return _internal_mutable_requestid();
-}
-inline const std::string& PutAppendArgs::_internal_requestid() const {
-  return requestid_.Get();
-}
-inline void PutAppendArgs::_internal_set_requestid(const std::string& value) {
-  
-  requestid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
-}
-inline void PutAppendArgs::set_requestid(std::string&& value) {
-  
-  requestid_.Set(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:raftKVRpcProctoc.PutAppendArgs.RequestId)
-}
-inline void PutAppendArgs::set_requestid(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  requestid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
-              GetArena());
-  // @@protoc_insertion_point(field_set_char:raftKVRpcProctoc.PutAppendArgs.RequestId)
-}
-inline void PutAppendArgs::set_requestid(const void* value,
-    size_t size) {
-  
-  requestid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:raftKVRpcProctoc.PutAppendArgs.RequestId)
-}
-inline std::string* PutAppendArgs::_internal_mutable_requestid() {
-  
-  return requestid_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline std::string* PutAppendArgs::release_requestid() {
-  // @@protoc_insertion_point(field_release:raftKVRpcProctoc.PutAppendArgs.RequestId)
-  return requestid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline void PutAppendArgs::set_allocated_requestid(std::string* requestid) {
-  if (requestid != nullptr) {
-    
-  } else {
-    
-  }
-  requestid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), requestid,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:raftKVRpcProctoc.PutAppendArgs.RequestId)
-}
-inline std::string* PutAppendArgs::unsafe_arena_release_requestid() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:raftKVRpcProctoc.PutAppendArgs.RequestId)
-  GOOGLE_DCHECK(GetArena() != nullptr);
-  
-  return requestid_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      GetArena());
-}
-inline void PutAppendArgs::unsafe_arena_set_allocated_requestid(
-    std::string* requestid) {
-  GOOGLE_DCHECK(GetArena() != nullptr);
-  if (requestid != nullptr) {
-    
-  } else {
-    
-  }
-  requestid_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      requestid, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:raftKVRpcProctoc.PutAppendArgs.RequestId)
 }
 
 // -------------------------------------------------------------------
