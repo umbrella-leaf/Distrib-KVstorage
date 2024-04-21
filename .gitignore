@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# build folder
+cmake-build-debug
+compile_commands.json
+.cache
+
+!bin/test.conf
+bin
+lib
