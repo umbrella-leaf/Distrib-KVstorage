@@ -21,8 +21,8 @@ public:
     Node(K& key, V& value, int level);
     ~Node();
 
-    K& get_key() const;
-    V& get_value() const;
+    const K& get_key() const;
+    const V& get_value() const;
 
     void set_value(V&);
 
@@ -50,12 +50,12 @@ Node<K, V>::~Node() {
 }
 
 template<typename K, typename  V>
-K& Node<K, V>::get_key() const {
+const K& Node<K, V>::get_key() const {
     return key;
 }
 
 template<typename K, typename  V>
-V& Node<K, V>::get_value() const {
+const V& Node<K, V>::get_value() const {
     return value;
 }
 
@@ -341,6 +341,12 @@ bool SkipList<K, V>::search_element(K &key, V &value) {
 
     std::cout << "Not Found Key:" << key << std::endl;
     return false;
+}
+
+template <typename K, typename V>
+void SkipListDump<K, V>::insert(const Node<K, V> &node) {
+  keyDumpVt_.emplace_back(node.get_key());
+  valDumpVt_.emplace_back(node.get_value());
 }
 
 template<typename K, typename V>
